@@ -7,16 +7,21 @@ Contributors: Annie Tran, Carol Wang, Dalena Nguyen, David Culciar, Ethan Choi, 
 > -->
 
 ## Project Description
- > ### Purpose
- > ...
+ > Aisle Mate helps customers with their shopping experience by helping them find products. Aisle Mate is a robot that has a display to search for products and will then guide the customer to the item's location.
  > ### Languages/Tools/Technologies
- > ...
+ > Product Display: Python, SQLite (DBMS)
+>
+ > Robot Mapping: AprilTags, Time-of-Flight Sensors
+ >
+>  Printing: 3D Printing
  > ### Features
- > ...
-## Header
-> ...
+> - Recognizes tags of every aisle.
+> - Adjusts path in real-time when facing obstacles.
+
 
 <!-- 
+## Header
+> ...
 ### Navigation Diagram
 ![navigation diagram](https://github.com/cs100/final-project-hnguy480_jwang948_jdel238_aprad036/assets/162086940/a8bf4160-0270-4a1c-9356-4bee26420f42)
 --> 

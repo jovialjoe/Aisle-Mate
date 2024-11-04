@@ -1,9 +1,15 @@
 import serial
+import cv2
+import apriltag
 
-#pull from controller board serial ports
-devices = serial.Serial('', 9600)
+#connect to controller board serial ports
+devices = serial.Serial('[arduino port]', 9600)
 
-#pull from rpi
-#camera data
+while True:
+    devData = devices.readline().decode().strip().split(',')
+    #provides controller output as a list
 
-devData = devices.readline()
+#read camera data
+
+devices.close()
+

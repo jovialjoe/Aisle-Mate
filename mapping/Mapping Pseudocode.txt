@@ -22,3 +22,5 @@ While approaching target:
 
     While Ultrasonic Range Sensor detects object:
         Turn away from object
+
+        

@@ -21,4 +21,4 @@ While approaching target:
                 Keep moving forward
 
     While Ultrasonic Range Sensor detects object:
-        Turn 3 degrees clockwise
+        Turn away from object

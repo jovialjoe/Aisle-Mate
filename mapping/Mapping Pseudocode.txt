@@ -1,0 +1,24 @@
+Import necessary libraries: Raspberry Pi package, AprilTag library
+Initialize: Touchscreen, Camera, Ultrasonic Range Sensor, Motors
+    Assign AprilTags to each aisle
+
+When input is received from Touchscreen:
+    Set target to Touchscreen output 
+    (given as AprilTag ID associated with aisle)
+
+While approaching target:
+    Drive forward (run Motors)
+
+    If AprilTag detected:
+        Check orientation of robot relative to AprilTag:
+            While not facing straight in X, Y, Z direction:
+                Turn
+
+        Check AprilTag ID:
+            If ID equal to target:
+                Stop moving forward; move into aisle
+            If ID NOT equal to target:
+                Keep moving forward
+
+    While Ultrasonic Range Sensor detects object:
+        Turn 3 degrees clockwise

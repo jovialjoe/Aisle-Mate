@@ -1,4 +1,5 @@
 import tkinter as tk
+import product_search_backend
 
 class ProductSearchApp:
     def __init__(self, root):
@@ -20,7 +21,7 @@ class ProductSearchApp:
         # keyboard layout
         self.keys = [
             '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
-            'Clear', 'Delete', 'Space', 'Search'
+            'Clear', 'Delete', 'Search'
         ]
 
         # create buttons for the keyboard
@@ -30,14 +31,6 @@ class ProductSearchApp:
         self.product_info_label = tk.Label(root, text="", font=('Arial', 18), wraplength=400)
         self.product_info_label.pack(pady=10)
 
-        # sample Ikea product data
-        self.products = {
-            "000": "bed frame",
-            "001": "cabinet",
-            "002": "fridge",
-            "003": "floor lamp",
-            "004": "coffee table"
-        }
 
     def create_keyboard(self):
         row = 0
@@ -72,11 +65,14 @@ class ProductSearchApp:
             self.entry.insert(tk.END, key)  
 
     def perform_search(self):
-        query = self.entry.get().strip().lower()
+        query = self.entry.get().strip()
         if query:  
-            # display the aisle number if found
-            aisle_num = self.products.get(query, "Product not found.") # this is temporary for demo purposes, replace with db request later
-            self.product_info_label.config(text=aisle_num)
+            response = product_search_backend.find_aisle_bin(query)
+            if response == (None, None):
+                display_text = f'Product with serial number {query} not found'
+            else:
+                display_text = f'Aisle: {response[0]} Bin: {response[1]}'
+            self.product_info_label.config(text=display_text)
             # clear entry after search
             self.entry.delete(0, tk.END)  
     

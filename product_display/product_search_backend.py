@@ -30,17 +30,18 @@ def edit_product(document_id: str, name: str, aisle: int, bin: int):
         'bin': bin
     })
 
-# gets all products in db
+# gets all products from the db
 def get_all_products():
     products_ref = db.collection('IkeaProducts')
     docs = products_ref.stream()
     return docs
 
-# print all documents 
+# prints all documents in the db
+'''
 docs = get_all_products()
 for doc in docs:
     print(f'{doc.id}: {doc.to_dict()}')
-
+'''
 
 # gets the aisle and bin that correspond to document_id to display on the ui
 def find_aisle_bin(document_id: str):
@@ -64,7 +65,6 @@ def find_tag_id_bin(document_id: str):
         data = doc.to_dict()
         tag_id = data.get('tag_id')
         bin = data.get('bin')
-        print(f'{tag_id}-{bin}')
         return tag_id, bin
     else:
         return None, None 

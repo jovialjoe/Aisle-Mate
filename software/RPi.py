@@ -2,14 +2,15 @@ import serial
 #import cv2
 #import numpy as np
 #from apriltag import apriltag
-from product_search_backend import find_aisle_bin
-from product_search_ui import ProductSearchApp
-import tkinter as tk
+
+import product_search_ui 
+import product_search_backend
+
 
 if __name__ == "__main__":
-    root = tk.Tk()
-    app = ProductSearchApp(root)
-    target = find_aisle_bin(app.get_entry())
+    root = product_search_ui.tk.Tk()
+    app = product_search_ui.ProductSearchApp(root)
+    target = product_search_backend.find_aisle_bin(app.get_entry())
     root.mainloop()
 
 #connect to controller board serial ports

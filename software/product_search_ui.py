@@ -1,6 +1,9 @@
 import tkinter as tk
 import product_search_backend
 
+aisle_robot_nav = None
+bin_robot_nav  =  None
+
 class ProductSearchApp:
     def __init__(self, root):
         self.root = root
@@ -72,13 +75,11 @@ class ProductSearchApp:
                 display_text = f'Product with serial number {query} not found'
             else:
                 display_text = f'Aisle: {response[0]} Bin: {response[1]}'
+                aisle_robot_nav = response[0]
+                bin_robot_nav = response[1]
             self.product_info_label.config(text=display_text)
             # clear entry after search
             self.entry.delete(0, tk.END)
-            
-    def get_entry(self):
-        return self.entry.get().strip()
-    
     
 
 if __name__ == "__main__":

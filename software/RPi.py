@@ -2,8 +2,8 @@ import serial
 #import cv2
 #import numpy as np
 #from apriltag import apriltag
-from product_display.product_search_backend import find_aisle_bin
-from product_display.product_search_ui import ProductSearchApp
+from product_search_backend import find_aisle_bin
+from product_search_ui import ProductSearchApp
 import tkinter as tk
 
 if __name__ == "__main__":
@@ -21,7 +21,8 @@ def calculateDist(sensorVal):
     # speed of sound in centimeter per microsecond
 
 def aisleDrive(aisle):
-    device.write(b'0,50')
+    
+    devices.write(b'0,75')
 
 def binDrive(bin):
     return

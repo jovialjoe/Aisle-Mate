@@ -12,15 +12,13 @@ While approaching target:
     If AprilTag detected:
         Check orientation of robot relative to AprilTag:
             While not facing straight in X, Y, Z direction:
-                Turn
+                Turn - run only one motor
 
         Check AprilTag ID:
             If ID equal to target:
-                Stop moving forward; move into aisle
+                Stop moving forward; move into aisle (90 degree turn)
             If ID NOT equal to target:
                 Keep moving forward
 
     While Ultrasonic Range Sensor detects object:
         Turn away from object
-
-        

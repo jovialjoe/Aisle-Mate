@@ -1,20 +1,21 @@
 import serial
 import time
+import serial.tools.list_ports
 #import cv2
 #import numpy as np
 #from apriltag import apriltag
 from product_search_backend import find_aisle_bin
 from product_search_ui import ProductSearchApp
-import tkinter as tk
 
-if __name__ == "__main__":
-    root = tk.Tk()
-    app = ProductSearchApp(root)
-    target = find_aisle_bin(app.get_entry())
-    root.mainloop()
+def find_usb_serial_ports():
+    #Finds and returns a list of USB serial ports on the Raspberry Pi
+
+    ports = list(serial.tools.list_ports.comports())
+    usb_ports = [port for port in ports if "USB" in port.description]
+    return usb_ports
 
 #connect to controller board serial ports
-devices = serial.Serial('[arduino port]', 9600)
+devices = serial.Serial(find_usb_serial_ports[0], 9600)
 
 def aisleDrive(aisle):
     driveTime = aisle * 5 #constant: 5 seconds per aisle

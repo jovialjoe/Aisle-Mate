@@ -5,21 +5,9 @@ import time
 #from apriltag import apriltag
 from product_search_backend import find_aisle_bin
 from product_search_ui import ProductSearchApp
-import tkinter as tk
-
-if __name__ == "__main__":
-    root = tk.Tk()
-    app = ProductSearchApp(root)
-    target = find_aisle_bin(app.get_entry())
-    root.mainloop()
 
 #connect to controller board serial ports
 devices = serial.Serial('[arduino port]', 9600)
-
-def calculateDist(sensorVal):
-    return ((float)(sensorVal) * 0.0343) / 2
-    # distance = sensor output * speed of sound / 2
-    # speed of sound in centimeter per microsecond
 
 def aisleDrive(aisle):
     driveTime = aisle * 5 #constant: 5 seconds per aisle
@@ -58,9 +46,9 @@ while True:
     encoder1 = devData[4]
     encoder2 = devData[5]
 
-    for values in sensorVals:
+    for value in sensorVals:
         if(True):
-            if(calculateDist(devData[values]) < 100):
+            if(value < 100):
                 obstruction = True
 
     aisleDrive(find_aisle_bin[0])

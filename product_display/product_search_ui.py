@@ -74,7 +74,11 @@ class ProductSearchApp:
                 display_text = f'Aisle: {response[0]} Bin: {response[1]}'
             self.product_info_label.config(text=display_text)
             # clear entry after search
-            self.entry.delete(0, tk.END)  
+            self.entry.delete(0, tk.END) 
+
+
+    def get_entry(self):
+        return  self.entry.get().strip()
     
     
 

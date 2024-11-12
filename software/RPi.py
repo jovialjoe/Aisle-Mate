@@ -1,4 +1,5 @@
 import serial
+import time
 #import cv2
 #import numpy as np
 #from apriltag import apriltag
@@ -21,11 +22,33 @@ def calculateDist(sensorVal):
     # speed of sound in centimeter per microsecond
 
 def aisleDrive(aisle):
-    
-    devices.write(b'0,75')
+    driveTime = aisle * 5 #constant: 5 seconds per aisle
+    startTime = time.time()
+    endTime = 0
+    elapsedTime = 0
+    while(elapsedTime < driveTime):
+        devices.write(b'75,75')
+        endTime = time.time()
+        elapsedTime = startTime - endTime
 
 def binDrive(bin):
-    return
+    driveTime = bin * 1.5 #constant: 1.5 seconds per bin
+    startTime = time.time()
+    endTime = 0
+    elapsedTime = 0
+    while(elapsedTime < driveTime):
+        devices.write(b'75,75')
+        endTime = time.time()
+        elapsedTime = startTime - endTime
+
+def aisleTurn():
+    startTime = time.time()
+    endTime = 0
+    elapsedTime = 0
+    while(elapsedTime < 1.25):
+        devices.write(b'0,75')
+        endTime = time.time()
+        elapsedTime = startTime - endTime
 
 while True:
     devData = devices.readline().decode().strip().split(',')
@@ -37,14 +60,20 @@ while True:
 
     for values in sensorVals:
         if(True):
-            if(calculateDist(devData[values]) < 30):
+            if(calculateDist(devData[values]) < 100):
                 obstruction = True
 
+    aisleDrive(find_aisle_bin[0])
+    aisleTurn
+    binDrive(find_aisle_bin[1])
+
+    '''
     if(obstruction == True):
-        #send back data to control - value from 0-100
+        #turn until obstruction is out of view
         devices.write(b'0,50')
     else:
         devices.write(b'50,50')
+    '''
 
     devices.close()
 

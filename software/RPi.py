@@ -4,8 +4,7 @@ import serial.tools.list_ports
 #import cv2
 #import numpy as np
 #from apriltag import apriltag
-from product_search_backend import find_aisle_bin
-from product_search_ui import ProductSearchApp
+from product_search_ui import aisle_robot_nav, bin_robot_nav
 
 def find_usb_serial_ports():
     #Finds and returns a list of USB serial ports on the Raspberry Pi
@@ -59,9 +58,9 @@ while True:
             if(value < 100):
                 obstruction = True
 
-    aisleDrive(find_aisle_bin[0])
+    aisleDrive((int(aisle_robot_nav)))
     aisleTurn
-    binDrive(find_aisle_bin[1])
+    binDrive((int(bin_robot_nav)))
 
     '''
     if(obstruction == True):

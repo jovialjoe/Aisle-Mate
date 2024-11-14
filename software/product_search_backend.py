@@ -2,7 +2,8 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 
-cred = credentials.Certificate('/Users/carolwang/Downloads/ikeaproducts-ba6c4-firebase-adminsdk-oea4f-cecb811593.json')  
+#cred = credentials.Certificate('/Users/carolwang/Downloads/ikeaproducts-ba6c4-firebase-adminsdk-oea4f-cecb811593.json')  
+cred = credentials.Certificate('/home/zetabeta/Downloads/ikeaproducts-ba6c4-firebase-adminsdk-oea4f-cecb811593.json')
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()

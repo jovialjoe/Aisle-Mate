@@ -1,25 +1,20 @@
 import serial
 import time
+import serial.tools.list_ports
 #import cv2
 #import numpy as np
 #from apriltag import apriltag
-from product_search_backend import find_aisle_bin
-from product_search_ui import ProductSearchApp
-import tkinter as tk
+from product_search_ui import aisle_robot_nav, bin_robot_nav
 
-if __name__ == "__main__":
-    root = tk.Tk()
-    app = ProductSearchApp(root)
-    target = find_aisle_bin(app.get_entry())
-    root.mainloop()
+def find_usb_serial_ports():
+    #Finds and returns a list of USB serial ports on the Raspberry Pi
+
+    ports = list(serial.tools.list_ports.comports())
+    usb_ports = [port for port in ports if "USB" in port.description]
+    return usb_ports
 
 #connect to controller board serial ports
-devices = serial.Serial('[arduino port]', 9600)
-
-def calculateDist(sensorVal):
-    return ((float)(sensorVal) * 0.0343) / 2
-    # distance = sensor output * speed of sound / 2
-    # speed of sound in centimeter per microsecond
+devices = serial.Serial(find_usb_serial_ports[0], 9600)
 
 def aisleDrive(aisle):
     driveTime = aisle * 5 #constant: 5 seconds per aisle
@@ -58,14 +53,14 @@ while True:
     encoder1 = devData[4]
     encoder2 = devData[5]
 
-    for values in sensorVals:
+    for value in sensorVals:
         if(True):
-            if(calculateDist(devData[values]) < 100):
+            if(value < 100):
                 obstruction = True
 
-    aisleDrive(find_aisle_bin[0])
+    aisleDrive((int(aisle_robot_nav)))
     aisleTurn
-    binDrive(find_aisle_bin[1])
+    binDrive((int(bin_robot_nav)))
 
     '''
     if(obstruction == True):

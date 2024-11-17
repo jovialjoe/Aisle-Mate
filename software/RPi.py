@@ -4,7 +4,7 @@ import serial.tools.list_ports
 #import cv2
 #import numpy as np
 #from apriltag import apriltag
-from product_search_ui import aisle_robot_nav, bin_robot_nav
+from product_search_integrated import aisle_robot_nav, bin_robot_nav
 
 def find_usb_serial_ports():
     #Finds and returns a list of USB serial ports on the Raspberry Pi

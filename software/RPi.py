@@ -2,8 +2,8 @@ import serial
 import time
 import serial.tools.list_ports
 import tkinter as tk
-import cv2
-import numpy as np
+#import cv2
+#import numpy as np
 from apriltag import apriltag
 from product_search_integrated import aisle_robot_nav, bin_robot_nav, ProductSearchApp
 

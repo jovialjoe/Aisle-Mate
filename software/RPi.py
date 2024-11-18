@@ -98,7 +98,7 @@ import tkinter as tk
 import threading
 import cv2
 import numpy as np
-from apriltag import apriltag
+from apriltag import Detector
 from product_search_integrated import aisle_robot_nav, bin_robot_nav, ProductSearchApp
 
 def find_usb_serial_ports():

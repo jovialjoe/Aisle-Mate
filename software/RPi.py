@@ -77,7 +77,7 @@ if __name__ == "__main__":
         else:
             devices.write(b'50,50')
         '''
-
+        
         #Apriltag scanning:
         detector = apriltag.Detector()
 
@@ -88,3 +88,4 @@ if __name__ == "__main__":
         detector = apriltag("tagStandard41h12")
 
         detections = detector.detect(image)
+        

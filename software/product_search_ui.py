@@ -3,6 +3,7 @@ import product_search_backend
 
 aisle_robot_nav = None
 bin_robot_nav  =  None
+april_tag_id = None
 
 class ProductSearchApp:
     def __init__(self, root):
@@ -71,12 +72,14 @@ class ProductSearchApp:
         query = self.entry.get().strip()
         if query:  
             response = product_search_backend.find_aisle_bin(query)
+            tag_id = product_search_backend.find_tag_id_bin(query)
             if response == (None, None):
                 display_text = f'Product with serial number {query} not found'
             else:
                 display_text = f'Aisle: {response[0]} Bin: {response[1]}'
                 aisle_robot_nav = response[0]
                 bin_robot_nav = response[1]
+                april_tag_id = tag_id[0]
             self.product_info_label.config(text=display_text)
             # clear entry after search
             self.entry.delete(0, tk.END)

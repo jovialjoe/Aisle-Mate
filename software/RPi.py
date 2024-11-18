@@ -6,7 +6,7 @@ import threading
 import cv2
 import numpy as np
 from apriltag import Detector
-from product_search_ui import aisle_robot_nav, bin_robot_nav, ProductSearchApp
+from product_search_ui import aisle_robot_nav, bin_robot_nav, april_tag_id, ProductSearchApp
 
 def find_usb_serial_ports():
     # Finds and returns a list of USB serial ports on the Raspberry Pi
@@ -15,7 +15,7 @@ def find_usb_serial_ports():
     return usb_ports
 
 def run_robot_control(devices):
-    while True:
+    while target != True:
         devData = devices.readline().decode().strip().split(',')
         obstruction = False
         sensorVals = devData[0:3]
@@ -29,8 +29,6 @@ def run_robot_control(devices):
         aisleDrive(int(aisle_robot_nav))
         aisleTurn()
         binDrive(int(bin_robot_nav))
-
-        # Add more logic here for robot control...
 
 def aisleDrive(aisle):
     driveTime = aisle * 5  # constant: 5 seconds per aisle
@@ -54,9 +52,12 @@ if __name__ == "__main__":
     root = tk.Tk()
     app = ProductSearchApp(root)
     root.mainloop()
-    '''
+    
     # Connect to the serial port
     devices = serial.Serial(find_usb_serial_ports()[0].device, 9600)
+
+    # See if robot has reached target
+    target = False
 
     # Start the robot control in a separate thread
     robot_thread = threading.Thread(target=run_robot_control, args=(devices,))
@@ -83,6 +84,8 @@ if __name__ == "__main__":
 
         # Handle detections
         for detection in detections:
+            if(detection.tag_id == april_tag_id):
+                target = True
             print("Detected tag: ", detection.tag_id)
 
         # Optional: Display the video feed with detections (if needed)
@@ -95,4 +98,4 @@ if __name__ == "__main__":
     cam.release()
     cv2.destroyAllWindows()
     devices.close()
-    '''
+    

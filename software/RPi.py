@@ -6,7 +6,7 @@ import threading
 import cv2
 import numpy as np
 from apriltag import Detector
-from product_search_integrated import aisle_robot_nav, bin_robot_nav, ProductSearchApp
+from product_search_ui import aisle_robot_nav, bin_robot_nav, ProductSearchApp
 
 def find_usb_serial_ports():
     # Finds and returns a list of USB serial ports on the Raspberry Pi
@@ -50,6 +50,11 @@ def aisleTurn():
         devices.write(b'0,75')
 
 if __name__ == "__main__":
+    # Tkinter GUI
+    root = tk.Tk()
+    app = ProductSearchApp(root)
+    root.mainloop()
+    '''
     # Connect to the serial port
     devices = serial.Serial(find_usb_serial_ports()[0].device, 9600)
 
@@ -57,11 +62,6 @@ if __name__ == "__main__":
     robot_thread = threading.Thread(target=run_robot_control, args=(devices,))
     robot_thread.daemon = True  # Ensures the thread exits when the main program exits
     robot_thread.start()
-
-    # Tkinter GUI
-    root = tk.Tk()
-    app = ProductSearchApp(root)
-    root.mainloop()
 
     # Apriltag scanning
     detector = apriltag.Detector()
@@ -95,3 +95,4 @@ if __name__ == "__main__":
     cam.release()
     cv2.destroyAllWindows()
     devices.close()
+    '''

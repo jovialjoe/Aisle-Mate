@@ -6,8 +6,53 @@ Contributors: Annie Tran, Carol Wang, Dalena Nguyen, David Culciar, Ethan Choi, 
 > \<[Jake Wang](https://github.com/DoubleClik)\> \<[Ashna Pradhan](https://github.com/ashnapradhan)\> \<[Chau Nguyen-Ho](https://github.com/ChauNguyenHo)\> \<[Joseph de Leon](https://github.com/jovialjoe)\>
 > -->
 
-## Project Description
- > Aisle Mate helps customers with their shopping experience by helping them find products. Aisle Mate is a robot that has a display to search for products and will then guide the customer to the item's location.
+## About Aisle Mate
+Aisle Mate guides customers in a store to an item of their choosing. It features a display to search for the product, and the robot will lead the customer to the item's location within the store.
+
+## In depth look of Aisle Mate
+### Software
+> ### Techstack
+> The programming language for all categories is Python. For scanning, C++ is also used.
+> 
+> The user interface uses the Tkinter library.
+> 
+> The database is hosted via Firebase Cloud Firestore.
+> 
+> The controls use Serial.
+> 
+> For scanning, AprilTag and NewPing are used.
+>
+> ### Userflow Diagram
+> ![userflowhardware drawio (1)](https://github.com/user-attachments/assets/28cc2b76-c797-4f9f-834a-963e78e09996)
+>
+> ### Database Information
+> Aisle mate accesses items through a remote database using wifi in real-time. For now, items are searched for via their unique codes, but in the future, items may be searched for on the user interface.
+>
+> ### Robot Mapping
+> 
+
+### Hardware
+> ### 3D Printing
+> For the filament, we used Inland 1.75mm PETG (polyethylene terephthalate glycol) and a Bambu Lab P1S 3D printer with a 0.4mm nozzle. The printing speeds were up to 500 mm/s and the infill density was 10%. In total, printing took about 10 hours.
+> ### Solidworks Designs
+> TBD
+> ### Fabrication
+> TBD
+> 
+> note: Custom screen mounts, wheels, shell design, filament is inland black 1.75 mm, petg, speed: 500, 7.5 hours for everything
+### Electrical Components
+> ### Motor Controlor & Arduino
+> TBD
+> ### Raspberry Pi
+> TBD
+> ### Battery Mounting System
+> TBD
+> ### Sensors
+> TBD
+
+
+
+<!-- 
  > ### Languages/Tools/Technologies
  > Product Display: Python, SQLite (DBMS)
 >

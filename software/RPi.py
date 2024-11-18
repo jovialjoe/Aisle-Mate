@@ -1,10 +1,11 @@
 import serial
 import time
 import serial.tools.list_ports
-#import cv2
-#import numpy as np
-#from apriltag import apriltag
-from product_search_integrated import aisle_robot_nav, bin_robot_nav
+import tkinter as tk
+import cv2
+import numpy as np
+from apriltag import apriltag
+from product_search_integrated import aisle_robot_nav, bin_robot_nav, ProductSearchApp
 
 def find_usb_serial_ports():
     #Finds and returns a list of USB serial ports on the Raspberry Pi
@@ -45,42 +46,45 @@ def aisleTurn():
         endTime = time.time()
         elapsedTime = startTime - endTime
 
-while True:
-    devData = devices.readline().decode().strip().split(',')
-    #provides controller output as a list
-    obstruction = False
-    sensorVals = devData[0:3]
-    encoder1 = devData[4]
-    encoder2 = devData[5]
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = ProductSearchApp(root)
+    root.mainloop()
 
-    for value in sensorVals:
-        if(True):
-            if(value < 100):
-                obstruction = True
+    while True:
+        devData = devices.readline().decode().strip().split(',')
+        #provides controller output as a list
+        obstruction = False
+        sensorVals = devData[0:3]
+        encoder1 = devData[4]
+        encoder2 = devData[5]
 
-    aisleDrive((int(aisle_robot_nav)))
-    aisleTurn
-    binDrive((int(bin_robot_nav)))
+        for value in sensorVals:
+            if(True):
+                if(value < 100):
+                    obstruction = True
 
-    '''
-    if(obstruction == True):
-        #turn until obstruction is out of view
-        devices.write(b'0,50')
-    else:
-        devices.write(b'50,50')
-    '''
+        aisleDrive((int(aisle_robot_nav)))
+        aisleTurn
+        binDrive((int(bin_robot_nav)))
 
-    devices.close()
+        devices.close()
 
-    '''
-    #Apriltag scanning:
-    #detector = apriltag.Detector()
+        '''
+        if(obstruction == True):
+            #turn until obstruction is out of view
+            devices.write(b'0,50')
+        else:
+            devices.write(b'50,50')
+        '''
 
-    #connect to camera:
-    #cam = cv2.VideoCapture(0)
-    #imagepath = 'test.jpg'
-    #image = cv2.imread(imagepath, cv2.IMREAD_GRAYSCALE)
-    #detector = apriltag("tagStandard41h12")
+        #Apriltag scanning:
+        detector = apriltag.Detector()
 
-    #detections = detector.detect(image)
-    '''
+        #connect to camera:
+        cam = cv2.VideoCapture(0)
+        imagepath = 'test.jpg'
+        image = cv2.imread(imagepath, cv2.IMREAD_GRAYSCALE)
+        detector = apriltag("tagStandard41h12")
+
+        detections = detector.detect(image)

@@ -9,18 +9,8 @@ arduino = serial.Serial('/dev/ttyUSB0', 9600)  # Adjust port as needed
 time.sleep(2)  # Wait for Arduino to reset
 
 # Initialize Pygame for Xbox controller input
-pygame.init()
-pygame.joystick.init()
 
-# Check for controller
-if pygame.joystick.get_count() == 0:
-    print("No controller connected!")
-    pygame.quit()
-    exit()
 
-controller = pygame.joystick.Joystick(0)
-controller.init()
-print(f"Controller connected: {controller.get_name()}")
 
 def map_value(value, in_min, in_max, out_min, out_max):
     """Map a value from one range to another."""

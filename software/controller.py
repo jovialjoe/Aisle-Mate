@@ -23,11 +23,6 @@ try:
 
     while True:
 
-        # Get joystick values
-
-        left_y = -controller.get_axis(1)  # Inverted, so multiply by -1
-        right_y = -controller.get_axis(4)
-
         while aisle_robot_nav:
 
             # Map joystick values to motor speed range (0 to 255)

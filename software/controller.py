@@ -32,18 +32,25 @@ try:
     root.mainloop()
 
     while True:
-        pygame.event.pump()
 
         # Get joystick values
+
         left_y = -controller.get_axis(1)  # Inverted, so multiply by -1
         right_y = -controller.get_axis(4)
 
-        # Map joystick values to motor speed range (0 to 255)
-        left_motor_speed = map_value(left_y, -1, 1, 0, 255)
-        right_motor_speed = map_value(right_y, -1, 1, 0, 255)
+        while aisle_robot_nav:
+
+            # Map joystick values to motor speed range (0 to 255)
+            left_motor_speed = map_value(.7, -1, 1, 0, 255)
+            right_motor_speed = map_value(.7, -1, 1, 0, 255)
+            arduino.write(f"L{left_motor_speed}R{right_motor_speed}\n".encode())
+            time.sleep(0.4)
+            aisle_robot_nav -= 1
+            
+        break
 
         # Send motor speeds to Arduino
-        arduino.write(f"L{left_motor_speed}R{right_motor_speed}\n".encode())
+        
 
         time.sleep(0.1)
 

@@ -1,6 +1,8 @@
 import pygame
 import serial
 import time
+import tkinter as tk
+from product_search_ui import aisle_robot_nav, bin_robot_nav, april_tag_id, ProductSearchApp
 
 # Initialize serial communication with Arduino
 arduino = serial.Serial('/dev/ttyUSB0', 9600)  # Adjust port as needed
@@ -25,6 +27,10 @@ def map_value(value, in_min, in_max, out_min, out_max):
     return int((value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)
 
 try:
+    root = tk.Tk()
+    app = ProductSearchApp(root)
+    root.mainloop()
+
     while True:
         pygame.event.pump()
 
